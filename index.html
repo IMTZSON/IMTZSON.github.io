@@ -30,6 +30,13 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+        /* MODIFICA: Aggiunto stile per lo sfondo della sezione Hero */
+        #home {
+            /* Ho usato la tua foto caricandola per mostrarti l'effetto. */
+            background-image: url('images/io2.jpg');
+            background-size: cover;
+            background-position: center;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -37,7 +44,7 @@
     <!-- Header -->
     <header class="fixed top-0 left-0 right-0 z-50 glass-effect">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-xl font-bold tracking-wider">Nicolò</a>
+            <a href="#" class="text-xl font-bold tracking-wider">Nicolò Cauli</a>
             <nav class="hidden md:flex space-x-8">
                 <a href="#about" class="hover:text-sky-400 transition-colors duration-300">Chi Sono</a>
                 <a href="#projects" class="hover:text-sky-400 transition-colors duration-300">Progetti</a>
@@ -51,15 +58,19 @@
 
     <main>
         <!-- Sezione Hero -->
-        <section id="home" class="min-h-screen flex items-center justify-center text-center bg-grid-white/[0.05]">
-            <div class="container mx-auto px-6">
-                <h1 class="text-4xl md:text-6xl lg:text-7xl font-black uppercase">
-                    Nicolò
+        <!-- MODIFICA: Struttura cambiata per includere sfondo e overlay -->
+        <section id="home" class="relative min-h-screen flex items-center justify-center text-center">
+            <!-- Overlay scuro per migliorare la leggibilità del testo -->
+            <div class="absolute inset-0 bg-black/60"></div>
+            
+            <div class="relative z-10 container mx-auto px-6">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-black uppercase text-white">
+                    Nicolò Cauli
                 </h1>
                 <h2 class="text-2xl md:text-4xl font-bold mt-2">
                     <span class="gradient-text">Sviluppatore Full Stack</span> di App Mobile
                 </h2>
-                <p class="mt-6 max-w-2xl mx-auto text-gray-300">
+                <p class="mt-6 max-w-2xl mx-auto text-gray-200">
                     Trasformo idee in applicazioni mobile performanti e intuitive con <span class="font-bold text-white">Ionic</span> e <span class="font-bold text-white">React Native</span>.
                 </p>
                 <div class="mt-8">
@@ -76,6 +87,7 @@
                 <h2 class="text-3xl md:text-4xl font-bold mb-4">Chi Sono</h2>
                 <div class="w-24 h-1 bg-sky-500 mx-auto mb-12"></div>
                 <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-12">
+                    <!-- ATTENZIONE: Questo percorso di immagine locale non funzionerà online. Carica l'immagine su un servizio di hosting. -->
                     <img src="images/io.jpg" alt="Foto di Nicolò" class="w-48 h-48 md:w-64 md:h-64 rounded-full object-cover shadow-lg border-4 border-gray-700">
                     <div class="text-left">
                         <p class="text-lg mb-4 text-gray-300">
@@ -104,7 +116,7 @@
                         </div>
                         <div class="md:w-1/2">
                             <p class="text-lg mb-4 text-gray-300">
-                                ServeNow è l'applicazione ufficiale che ho realizzato per l'organizzazione di volontariato Serve the City. Lo strumento digitale connette i volontari con progetti e persone in difficoltà, semplificando la gestione degli eventi e la comunicazione. Il mio obiettivo era creare una piattaforma tecnologica per massimizzare l'impatto sociale dell'organizzazione sul territorio..
+                                ServeNow è l'applicazione ufficiale che ho realizzato per l'organizzazione di volontariato Serve the City. Lo strumento digitale connette i volontari con progetti e persone in difficoltà, semplificando la gestione degli eventi e la comunicazione. Il mio obiettivo era creare una piattaforma tecnologica per massimizzare l'impatto sociale dell'organizzazione sul territorio.
                             </p>
                             <p class="text-gray-300 mb-6">
                                 Sviluppata interamente con <strong>React Native</strong>, l'app offre un'esperienza utente fluida, notifiche push, geolocalizzazione e un sistema di pagamento integrato.
@@ -123,30 +135,31 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     <!-- Progetto 1 -->
                     <div class="p-6 rounded-xl glass-effect text-center transform hover:-translate-y-2 transition-transform duration-300">
-                        <img src="https://radiovisionair.net/wp-content/uploads/2025/07/logoradiovisionair.png" alt="Logo Villa Pernis Vaca" class="w-full h-32 object-cover rounded-md mb-4">
+                        <img src="https://radiovisionair.net/wp-content/uploads/2025/07/logoradiovisionair.png" alt="Logo Radio Visionair" class="w-full h-24 object-contain rounded-md mb-4" onerror="this.onerror=null; this.src='https://placehold.co/500x300/1f2937/e5e7eb?text=Radio+Visionair';">
                         <h4 class="text-xl font-bold mb-2">Radio Visionair</h4>
                         <p class="text-gray-400 text-sm">App per ascoltare la radio dei tuoi sogni</p>
                     </div>
+                    <!-- Progetto 2 -->
                     <div class="p-6 rounded-xl glass-effect text-center transform hover:-translate-y-2 transition-transform duration-300">
-                        <img src="images/everyoffer.png" alt="Logo EveryOffer" class="w-full h-32 object-cover rounded-md mb-4">
+                        <img src="images/offer.png" alt="Logo EveryOffer" class="w-full h-24 object-contain rounded-md mb-4" >
                         <h4 class="text-xl font-bold mb-2">EveryOffer</h4>
                         <p class="text-gray-400 text-sm">App per la ricerca di offerte e sconti.</p>
                     </div>
-                    <!-- Progetto 2 -->
+                    <!-- Progetto 3 -->
                     <div class="p-6 rounded-xl glass-effect text-center transform hover:-translate-y-2 transition-transform duration-300">
-                        <img src="images/everypark.png" alt="Logo EveryPark" class="w-full h-32 object-cover rounded-md mb-4">
+                        <img src="images/park.png" alt="Logo EveryPark" class="w-full h-24 object-contain rounded-md mb-4">
                         <h4 class="text-xl font-bold mb-2">EveryPark</h4>
                         <p class="text-gray-400 text-sm">Soluzione per la gestione dei parcheggi.</p>
                     </div>
-                    <!-- Progetto 3 -->
+                    <!-- Progetto 4 -->
                     <div class="p-6 rounded-xl glass-effect text-center transform hover:-translate-y-2 transition-transform duration-300">
-                        <img src="https://museoteti.it/wp-content/uploads/2024/07/logo-museo.png" alt="Logo Museo Di Teti" class="w-full h-32 object-cover rounded-md mb-4">
+                        <img src="https://museoteti.it/wp-content/uploads/2024/07/logo-museo.png" alt="Logo Museo Di Teti" class="w-full h-24 object-contain rounded-md mb-4" onerror="this.onerror=null; this.src='https://placehold.co/500x300/1f2937/e5e7eb?text=Museo+Di+Teti';">
                         <h4 class="text-xl font-bold mb-2">Museo Di Teti</h4>
                         <p class="text-gray-400 text-sm">Guida interattiva per il museo.</p>
                     </div>
-                    <!-- Progetto 4 -->
+                    <!-- Progetto 5 -->
                     <div class="p-6 rounded-xl glass-effect text-center transform hover:-translate-y-2 transition-transform duration-300">
-                        <img src="https://villapernisvacca.it/wp-content/uploads/2025/04/logo.png" alt="Logo Villa Pernis Vaca" class="w-full h-32 object-cover rounded-md mb-4">
+                        <img src="https://villapernisvacca.it/wp-content/uploads/2025/04/logo.png" alt="Logo Villa Pernis Vaca" class="w-full h-24 object-contain rounded-md mb-4" onerror="this.onerror=null; this.src='https://placehold.co/500x300/1f2937/e5e7eb?text=Villa+Pernis';">
                         <h4 class="text-xl font-bold mb-2">Villa Pernis Vaca</h4>
                         <p class="text-gray-400 text-sm">App per eventi e prenotazioni della villa.</p>
                     </div>
