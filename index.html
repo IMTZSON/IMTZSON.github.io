@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="it" class="scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nicolò - Sviluppatore Full Stack</title>
+    <title data-translate="title">Nicolò - Full Stack Developer</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -13,57 +13,115 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
     
-    <!-- Stili personalizzati -->
+    <!-- AOS Animate On Scroll Library CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Custom Styles -->
     <style>
+        /* Base styles for dark mode (default) */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #111827; /* Grigio scuro per lo sfondo */
-            color: #E5E7EB; /* Testo grigio chiaro */
+            background-color: #111827; /* Dark gray for background */
+            color: #E5E7EB; /* Light gray text */
+            transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for theme change */
         }
+
+        /* Light mode styles */
+        html.light body {
+            background-color: #F9FAFB; /* Light background */
+            color: #1F2937; /* Dark text */
+        }
+        
+        /* Glass effect for dark mode */
         .glass-effect {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
+
+        /* Glass effect for light mode */
+        html.light .glass-effect {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(209, 213, 219, 0.5); /* Lighter border */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+
+        /* Gradient text remains the same for both themes */
         .gradient-text {
             background: linear-gradient(to right, #38bdf8, #818cf8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+
+        /* Hero section background image */
         #home {
             background-image: url('images/io2.jpg');
             background-size: cover;
             background-position: center;
         }
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+
+        /* Overlay for hero section */
+        #home .overlay {
+            background-color: rgba(0, 0, 0, 0.6); /* Dark overlay for dark mode */
+            transition: background-color 0.3s ease;
         }
 
-        .animate-on-load {
-            opacity: 0; /* Stato iniziale per evitare flash */
-            animation: fadeInUp 0.8s cubic-bezier(0.5, 0, 0, 1) forwards;
+        /* Light mode overlay for hero section */
+        html.light #home .overlay {
+            background-color: rgba(255, 255, 255, 0.7); /* Lighter overlay for light mode */
         }
 
-        .delay-200 { animation-delay: 0.2s; }
-        .delay-400 { animation-delay: 0.4s; }
-        .delay-600 { animation-delay: 0.6s; }
-
-        /* Stili per le animazioni in entrata allo scroll */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s cubic-bezier(0.5, 0, 0, 1), transform 0.8s cubic-bezier(0.5, 0, 0, 1);
+        /* Adjust text color for hero section in light mode */
+        html.light #home h1,
+        html.light #home h2,
+        html.light #home p {
+            color: #1F2937; /* Darker text for readability */
         }
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
+        
+        /* Background for skills section */
+        #skills {
+            background-color: #1F2937; /* Darker background for skills in dark mode */
+            transition: background-color 0.3s ease;
+        }
+
+        html.light #skills {
+            background-color: #E5E7EB; /* Lighter background for skills in light mode */
+        }
+
+        /* Footer background */
+        footer {
+            background-color: #1F2937; /* Darker background for footer in dark mode */
+            transition: background-color 0.3s ease;
+        }
+
+        html.light footer {
+            background-color: #D1D5DB; /* Lighter background for footer in light mode */
+            color: #4B5563; /* Darker text for footer in light mode */
+        }
+
+        /* Project card background */
+        .project-card, .experience-item {
+            background-color: rgba(255, 255, 255, 0.05); /* Glass effect for dark mode */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        html.light .project-card, html.light .experience-item {
+            background-color: rgba(255, 255, 255, 0.9); /* Lighter background for light mode */
+            border: 1px solid rgba(209, 213, 219, 0.5);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Text colors for specific elements in light mode */
+        html.light .text-gray-300 {
+            color: #374151; /* Darker gray for light mode */
+        }
+        html.light .text-gray-400 {
+            color: #6B7280; /* Even darker gray for light mode */
+        }
+        html.light .border-gray-700 {
+            border-color: #D1D5DB; /* Lighter border for light mode */
         }
     </style>
 </head>
@@ -73,106 +131,176 @@
     <header class="fixed top-0 left-0 right-0 z-50 glass-effect">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#" class="text-xl font-bold tracking-wider">Nicolò Cauli</a>
-            <nav class="hidden md:flex space-x-8">
-                <a href="#about" class="hover:text-sky-400 transition-colors duration-300">Chi Sono</a>
-                <a href="#skills" class="hover:text-sky-400 transition-colors duration-300">Competenze</a>
-                <a href="#projects" class="hover:text-sky-400 transition-colors duration-300">Progetti</a>
-                <a href="#contact" class="hover:text-sky-400 transition-colors duration-300">Contatti</a>
+            <nav class="hidden md:flex space-x-8 items-center">
+                <a href="#about" class="hover:text-sky-400 transition-colors duration-300" data-translate="nav-about">About Me</a>
+                <a href="#skills" class="hover:text-sky-400 transition-colors duration-300" data-translate="nav-skills">Skills</a>
+                <a href="#experience" class="hover:text-sky-400 transition-colors duration-300" data-translate="nav-experience">Experience</a>
+                <a href="#projects" class="hover:text-sky-400 transition-colors duration-300" data-translate="nav-projects">Projects</a>
+                <a href="#contact" class="hover:text-sky-400 transition-colors duration-300" data-translate="nav-contact">Contact</a>
+                
+                <!-- Language Selector -->
+                <div class="relative inline-block text-left">
+                    <button id="language-toggle" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-gray-800 text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-sky-500 transition-colors duration-300">
+                        <span id="current-language-text">EN</span>
+                        <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                    <div id="language-dropdown" class="origin-top-right absolute right-0 mt-2 w-24 rounded-md shadow-lg bg-gray-800 ring-1 ring-black ring-opacity-5 hidden z-50">
+                        <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="language-toggle">
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white" role="menuitem" data-lang="en">English</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white" role="menuitem" data-lang="it">Italiano</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Theme Toggle Button -->
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-sky-500 transition-colors duration-300">
+                    <svg id="sun-icon" class="w-6 h-6 text-yellow-400 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h1M3 12H2m15.325-4.243l.707-.707M3.934 3.934l.707.707m0 12.728l-.707.707m12.728 0l.707-.707M12 18a6 6 0 110-12 6 6 0 010 12z"></path>
+                    </svg>
+                    <svg id="moon-icon" class="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                    </svg>
+                </button>
             </nav>
             <div class="md:hidden">
-                <!-- Menu mobile (opzionale) -->
+                <!-- Mobile menu (optional) - You can add a hamburger icon here -->
+                <button id="mobile-menu-button" class="text-white focus:outline-none">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
             </div>
+        </div>
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="hidden md:hidden fixed inset-0 bg-gray-900/90 backdrop-blur-md z-40 flex flex-col items-center justify-center space-y-8 text-xl">
+            <a href="#about" class="text-white hover:text-sky-400 transition-colors duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')" data-translate="nav-about">About Me</a>
+            <a href="#skills" class="text-white hover:text-sky-400 transition-colors duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')" data-translate="nav-skills">Skills</a>
+            <a href="#experience" class="text-white hover:text-sky-400 transition-colors duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')" data-translate="nav-experience">Experience</a>
+            <a href="#projects" class="text-white hover:text-sky-400 transition-colors duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')" data-translate="nav-projects">Projects</a>
+            <a href="#contact" class="text-white hover:text-sky-400 transition-colors duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')" data-translate="nav-contact">Contact</a>
+            
+            <!-- Mobile Language Selector -->
+            <div class="relative inline-block text-left">
+                <button id="mobile-language-toggle" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-gray-800 text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-sky-500 transition-colors duration-300">
+                    <span id="mobile-current-language-text">EN</span>
+                    <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+                <div id="mobile-language-dropdown" class="origin-top-right absolute right-0 mt-2 w-24 rounded-md shadow-lg bg-gray-800 ring-1 ring-black ring-opacity-5 hidden z-50">
+                    <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="mobile-language-toggle">
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white" role="menuitem" data-lang="en">English</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white" role="menuitem" data-lang="it">Italiano</a>
+                    </div>
+                </div>
+            </div>
+
+            <button id="mobile-theme-toggle" class="p-2 rounded-full hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-sky-500 transition-colors duration-300">
+                <svg id="mobile-sun-icon" class="w-8 h-8 text-yellow-400 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h1M3 12H2m15.325-4.243l.707-.707M3.934 3.934l.707.707m0 12.728l-.707.707m12.728 0l.707-.707M12 18a6 6 0 110-12 6 6 0 010 12z"></path>
+                </svg>
+                <svg id="mobile-moon-icon" class="w-8 h-8 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                </svg>
+            </button>
+            <button class="absolute top-6 right-6 text-white" onclick="document.getElementById('mobile-menu').classList.add('hidden')">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
         </div>
     </header>
 
     <main>
-        <!-- Sezione Hero -->
+        <!-- Hero Section -->
         <section id="home" class="relative min-h-screen flex items-center justify-center text-center">
-            <div class="absolute inset-0 bg-black/60"></div>
+            <div class="absolute inset-0 overlay"></div>
             <div class="relative z-10 container mx-auto px-6">
-                <h1 class="text-4xl md:text-6xl lg:text-7xl font-black uppercase text-white animate-on-load">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-black uppercase text-white" data-aos="fade-up" data-aos-duration="1000" data-translate="hero-title">
                     Nicolò
                 </h1>
-                <h2 class="text-2xl md:text-4xl font-bold mt-2 animate-on-load delay-200">
-                    <span class="gradient-text">Sviluppatore Full Stack</span> di App Mobile
+                <h2 class="text-2xl md:text-4xl font-bold mt-2" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+                    <span class="gradient-text" data-translate="hero-subtitle-part1">Full Stack Developer</span> <span data-translate="hero-subtitle-part2">of Mobile Apps</span>
                 </h2>
-                <p class="mt-6 max-w-2xl mx-auto text-gray-200 animate-on-load delay-400">
-                    Trasformo idee in applicazioni mobile performanti e intuitive con <span class="font-bold text-white">Ionic</span> e <span class="font-bold text-white">React Native</span>.
+                <p class="mt-6 max-w-2xl mx-auto text-gray-200" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
+                    <span data-translate="hero-description-part1">I transform ideas into high-performance and intuitive mobile applications with</span> <span class="font-bold text-white" data-translate="hero-description-ionic">Ionic</span> and <span class="font-bold text-white" data-translate="hero-description-reactnative">React Native</span>.
                 </p>
-                <div class="mt-8 animate-on-load delay-600">
-                    <a href="#projects" class="bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-8 rounded-full transition-transform duration-300 transform hover:scale-105">
-                        Scopri i miei lavori
+                <div class="mt-8" data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000">
+                    <a href="#projects" class="bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-8 rounded-full transition-transform duration-300 transform hover:scale-105" data-translate="hero-button">
+                        Discover My Work
                     </a>
                 </div>
             </div>
         </section>
 
-        <!-- Sezione Chi Sono (About) -->
-        <section id="about" class="py-20 md:py-32 reveal">
+        <!-- About Section -->
+        <section id="about" class="py-20 md:py-32">
             <div class="container mx-auto px-6 text-center">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Chi Sono</h2>
-                <div class="w-24 h-1 bg-sky-500 mx-auto mb-12"></div>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up" data-translate="about-title">About Me</h2>
+                <div class="w-24 h-1 bg-sky-500 mx-auto mb-12" data-aos="fade-up" data-aos-delay="100"></div>
                 <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-12">
-                    <img src="images/io.jpg" alt="Foto di Nicolò" class="w-48 h-48 md:w-64 md:h-64 rounded-full object-cover shadow-lg border-4 border-gray-700">
-                    <div class="text-left">
-                        <p class="text-lg mb-4 text-gray-300">
-                            Ciao! Sono Nicolò Cauli, uno sviluppatore di 22 anni con una forte passione per l'universo dello sviluppo mobile. Il mio obiettivo è creare esperienze utente che non siano solo funzionali, ma anche piacevoli e intuitive.
+                    <img src="images/io.jpg" alt="Nicolò's Photo" class="w-48 h-48 md:w-64 md:h-64 rounded-full object-cover shadow-lg border-4 border-gray-700" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="text-left" data-aos="fade-left" data-aos-duration="1000">
+                        <p class="text-lg mb-4 text-gray-300" data-translate="about-p1-part1">
+                            Hi! I'm Nicolò Cauli, a 22-year-old developer with a strong passion for the world of mobile development. My goal is to create user experiences that are not only functional but also enjoyable and intuitive.
                         </p>
                         <p class="text-lg text-gray-300">
-                            Con una solida esperienza in <span class="text-sky-400 font-semibold">Ionic</span> e <span class="text-cyan-400 font-semibold">React Native</span>, gestisco l'intero ciclo di vita di un'applicazione: dalla progettazione dell'interfaccia alla logica del backend, garantendo un prodotto finale completo e di alta qualità.
+                            <span data-translate="about-p2-part1">With solid experience in</span> <span class="text-sky-400 font-semibold" data-translate="about-p2-ionic">Ionic</span> and <span class="text-cyan-400 font-semibold" data-translate="about-p2-reactnative">React Native</span>, <span data-translate="about-p2-part2">I manage the entire application lifecycle: from interface design to backend logic, ensuring a complete and high-quality final product.</span>
                         </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Sezione Competenze (Skills) -->
-        <section id="skills" class="py-20 md:py-32 bg-gray-900/50 reveal">
+        <!-- Skills Section -->
+        <section id="skills" class="py-20 md:py-32 bg-gray-900/50">
             <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Le mie Competenze</h2>
-                <div class="w-24 h-1 bg-sky-500 mx-auto mb-12"></div>
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4" data-aos="fade-up" data-translate="skills-title">My Skills</h2>
+                <div class="w-24 h-1 bg-sky-500 mx-auto mb-12" data-aos="fade-up" data-aos-delay="100"></div>
                 <div class="max-w-5xl mx-auto">
-                    <!-- Linguaggi -->
-                    <div class="mb-12">
-                        <h3 class="text-2xl font-bold text-center mb-8 gradient-text">✍️ Linguaggi</h3>
+                    <!-- Languages -->
+                    <div class="mb-12" data-aos="fade-up" data-aos-delay="200">
+                        <h3 class="text-2xl font-bold text-center mb-8 gradient-text" data-translate="skills-languages-title">✍️ Languages</h3>
                         <div class="flex flex-wrap justify-center gap-4">
-                            <div class="flex items-center gap-3 p-3 px-4 rounded-lg glass-effect"><img src="https://cdn.simpleicons.org/typescript/3178C6" class="w-6 h-6" alt="TypeScript"><span>TypeScript</span></div>
-                            <div class="flex items-center gap-3 p-3 px-4 rounded-lg glass-effect"><img src="https://cdn.simpleicons.org/javascript/F7DF1E" class="w-6 h-6" alt="JavaScript"><span>JavaScript</span></div>
-                            <div class="flex items-center gap-3 p-3 px-4 rounded-lg glass-effect"><img src="https://cdn.simpleicons.org/swift/F05138" class="w-6 h-6" alt="Swift"><span>Swift</span></div>
-                            <div class="flex items-center gap-3 p-3 px-4 rounded-lg glass-effect"><img src="https://cdn.simpleicons.org/dart/0175C2" class="w-6 h-6" alt="Dart"><span>Dart</span></div>
-                            <div class="flex items-center gap-3 p-3 px-4 rounded-lg glass-effect"><img src="https://cdn.simpleicons.org/sass/CC6699" class="w-6 h-6" alt="SCSS"><span>SCSS</span></div>
-                            <div class="flex items-center gap-3 p-3 px-4 rounded-lg glass-effect"><img src="https://cdn.simpleicons.org/python/3776AB" class="w-6 h-6" alt="Python"><span>Python</span></div>
-                            <div class="flex items-center gap-3 p-3 px-4 rounded-lg glass-effect"><img src="https://cdn.simpleicons.org/php/777BB4" class="w-6 h-6" alt="PHP"><span>PHP</span></div>
-                            <div class="flex items-center gap-3 p-3 px-4 rounded-lg glass-effect"><img src="https://cdn.simpleicons.org/html5/E34F26" class="w-6 h-6" alt="HTML"><span>HTML</span></div>
+                            <div class="flex items-center gap-3 p-3 px-4 rounded-lg glass-effect project-card"><img src="https://cdn.simpleicons.org/typescript/3178C6" class="w-6 h-6" alt="TypeScript"><span>TypeScript</span></div>
+                            <div class="flex items-center gap-3 p-3 px-4 rounded-lg glass-effect project-card"><img src="https://cdn.simpleicons.org/javascript/F7DF1E" class="w-6 h-6" alt="JavaScript"><span>JavaScript</span></div>
+                            <div class="flex items-center gap-3 p-3 px-4 rounded-lg glass-effect project-card"><img src="https://cdn.simpleicons.org/swift/F05138" class="w-6 h-6" alt="Swift"><span>Swift</span></div>
+                            <div class="flex items-center gap-3 p-3 px-4 rounded-lg glass-effect project-card"><img src="https://cdn.simpleicons.org/dart/0175C2" class="w-6 h-6" alt="Dart"><span>Dart</span></div>
+                            <div class="flex items-center gap-3 p-3 px-4 rounded-lg glass-effect project-card"><img src="https://cdn.simpleicons.org/sass/CC6699" class="w-6 h-6" alt="SCSS"><span>SCSS</span></div>
+                            <div class="flex items-center gap-3 p-3 px-4 rounded-lg glass-effect project-card"><img src="https://cdn.simpleicons.org/python/3776AB" class="w-6 h-6" alt="Python"><span>Python</span></div>
+                            <div class="flex items-center gap-3 p-3 px-4 rounded-lg glass-effect project-card"><img src="https://cdn.simpleicons.org/php/777BB4" class="w-6 h-6" alt="PHP"><span>PHP</span></div>
+                            <div class="flex items-center gap-3 p-3 px-4 rounded-lg glass-effect project-card"><img src="https://cdn.simpleicons.org/html5/E34F26" class="w-6 h-6" alt="HTML"><span>HTML</span></div>
                         </div>
                     </div>
                     <!-- Tech Stack -->
-                    <div>
-                        <h3 class="text-2xl font-bold text-center mb-8 gradient-text">🛠 Tech Stack e Strumenti</h3>
+                    <div data-aos="fade-up" data-aos-delay="300">
+                        <h3 class="text-2xl font-bold text-center mb-8 gradient-text" data-translate="skills-tech-stack-title">🛠 Tech Stack and Tools</h3>
                         <div class="grid md:grid-cols-3 gap-8 text-center">
-                            <div>
-                                <h4 class="text-xl font-semibold mb-4">Front-End</h4>
+                            <div data-aos="fade-up" data-aos-delay="400">
+                                <h4 class="text-xl font-semibold mb-4" data-translate="skills-frontend-title">Front-End</h4>
                                 <div class="flex flex-col items-center gap-3">
-                                    <span class="p-2 px-4 rounded-md glass-effect w-full">Angular</span>
-                                    <span class="p-2 px-4 rounded-md glass-effect w-full">React</span>
-                                    <span class="p-2 px-4 rounded-md glass-effect w-full">Ionic</span>
-                                    <span class="p-2 px-4 rounded-md glass-effect w-full">Ant Design</span>
-                                    <span class="p-2 px-4 rounded-md glass-effect w-full">Less</span>
+                                    <span class="p-2 px-4 rounded-md glass-effect project-card w-full">Angular</span>
+                                    <span class="p-2 px-4 rounded-md glass-effect project-card w-full">React</span>
+                                    <span class="p-2 px-4 rounded-md glass-effect project-card w-full">Ionic</span>
+                                    <span class="p-2 px-4 rounded-md glass-effect project-card w-full">Ant Design</span>
+                                    <span class="p-2 px-4 rounded-md glass-effect project-card w-full">Less</span>
                                 </div>
                             </div>
-                            <div>
-                                <h4 class="text-xl font-semibold mb-4">Back-End</h4>
+                            <div data-aos="fade-up" data-aos-delay="500">
+                                <h4 class="text-xl font-semibold mb-4" data-translate="skills-backend-title">Back-End</h4>
                                 <div class="flex flex-col items-center gap-3">
-                                    <span class="p-2 px-4 rounded-md glass-effect w-full">Node.js</span>
-                                    <span class="p-2 px-4 rounded-md glass-effect w-full">Egg.js</span>
-                                    <span class="p-2 px-4 rounded-md glass-effect w-full">MongoDB</span>
+                                    <span class="p-2 px-4 rounded-md glass-effect project-card w-full">Node.js</span>
+                                    <span class="p-2 px-4 rounded-md glass-effect project-card w-full">Egg.js</span>
+                                    <span class="p-2 px-4 rounded-md glass-effect project-card w-full">MongoDB</span>
                                 </div>
                             </div>
-                            <div>
-                                <h4 class="text-xl font-semibold mb-4">DevOps</h4>
+                            <div data-aos="fade-up" data-aos-delay="600">
+                                <h4 class="text-xl font-semibold mb-4" data-translate="skills-devops-title">DevOps</h4>
                                 <div class="flex flex-col items-center gap-3">
-                                    <span class="p-2 px-4 rounded-md glass-effect w-full">GitHub Actions</span>
-                                    <span class="p-2 px-4 rounded-md glass-effect w-full">Docker</span>
+                                    <span class="p-2 px-4 rounded-md glass-effect project-card w-full">GitHub Actions</span>
+                                    <span class="p-2 px-4 rounded-md glass-effect project-card w-full">Docker</span>
                                 </div>
                             </div>
                         </div>
@@ -181,25 +309,90 @@
             </div>
         </section>
 
-        <!-- Sezione Progetti -->
-        <section id="projects" class="py-20 md:py-32 reveal">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">I Miei Progetti</h2>
-                <div class="w-24 h-1 bg-sky-500 mx-auto mb-12"></div>
+        <!-- Experience Section -->
+        <section id="experience" class="py-20 md:py-32">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up" data-translate="experience-title">Experience & Education</h2>
+                <div class="w-24 h-1 bg-sky-500 mx-auto mb-12" data-aos="fade-up" data-aos-delay="100"></div>
 
-                <!-- Progetto in Evidenza: ServeNow -->
-                <div class="mb-20 p-8 rounded-2xl glass-effect border-sky-500/50 border-2">
-                    <h3 class="text-2xl font-bold mb-2 text-center md:text-left gradient-text">IN EVIDENZA: ServeNow</h3>
-                    <div class="flex flex-col md:flex-row gap-8 items-center">
-                        <div class="md:w-1/2">
-                            <img src="https://i.ytimg.com/vi/W8MTQCQTr-o/maxresdefault.jpg" alt="Mockup dell'app ServeNow" class="rounded-lg shadow-2xl w-full">
+                <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <!-- Work Experience -->
+                    <div data-aos="fade-right" data-aos-duration="1000">
+                        <h3 class="text-2xl font-bold mb-6 gradient-text" data-translate="experience-work-title">💼 Work Experience</h3>
+                        <div class="space-y-8">
+                            <div class="experience-item p-6 rounded-xl glass-effect text-left">
+                                <h4 class="text-xl font-semibold" data-translate="exp-fs-mobile-title">Senior Full Stack Mobile Developer</h4>
+                                <p class="text-sky-400" data-translate="exp-fs-mobile-dates">PrimaIdea | Mar 2025 - Present</p>
+                                <ul class="list-disc list-inside text-gray-300 mt-2 space-y-1">
+                                    <li data-translate="exp-fs-mobile-desc1">Design and develop cross-platform mobile applications for iOS and Android using modern frameworks like Ionic and React Native.</li>
+                                    <li data-translate="exp-fs-mobile-desc2">Manage the entire app lifecycle — from planning and UI/UX design, to development, testing, deployment, and maintenance.</li>
+                                    <li data-translate="exp-fs-mobile-desc3">Build robust, scalable back-end services and APIs with Node.js and integrate with cloud-based databases and third-party services.</li>
+                                    <li data-translate="exp-fs-mobile-desc4">Focus on delivering high-performance, visually appealing, and user-friendly experiences across devices.</li>
+                                    <li data-translate="exp-fs-mobile-desc5">Collaborate with clients to transform ideas into fully functional apps, providing technical guidance and product vision support.</li>
+                                </ul>
+                            </div>
+
+                            <div class="experience-item p-6 rounded-xl glass-effect text-left">
+                                <h4 class="text-xl font-semibold" data-translate="exp-fe-title">Senior Front-end Developer</h4>
+                                <p class="text-sky-400" data-translate="exp-fe-dates">NoviGroup | Apr 2024 - Oct 2024</p>
+                                <ul class="list-disc list-inside text-gray-300 mt-2 space-y-1">
+                                    <li data-translate="exp-fe-desc1">Designed and developed responsive websites and cross-platform mobile applications for iOS and Android.</li>
+                                    <li data-translate="exp-fe-desc2">Focused on delivering intuitive and visually engaging user interfaces using modern front-end technologies.</li>
+                                    <li data-translate="exp-fe-desc3">Collaborated with designers and backend developers to ensure seamless integration and optimal performance.</li>
+                                    <li data-translate="exp-fe-desc4">Implemented best practices in UI/UX, accessibility, and performance optimization.</li>
+                                </ul>
+                            </div>
+
+                            <div class="experience-item p-6 rounded-xl glass-effect text-left">
+                                <h4 class="text-xl font-semibold" data-translate="exp-serve-now-title">Senior Full Stack Developer</h4>
+                                <p class="text-sky-400" data-translate="exp-serve-now-dates">Serve Now | Sep 2023 - Mar 2024</p>
+                                <ul class="list-disc list-inside text-gray-300 mt-2 space-y-1">
+                                    <li data-translate="exp-serve-now-desc1">Led the development of a complete mobile application using Ionic React, managing both front-end and back-end components.</li>
+                                    <li data-translate="exp-serve-now-desc2">Designed and implemented a responsive and user-friendly interface with optimized performance across devices.</li>
+                                    <li data-translate="exp-serve-now-desc3">Developed secure APIs and integrated backend services to support core application functionality.</li>
+                                    <li data-translate="exp-serve-now-desc4">Collaborated with the client to define features, improve UX, and ensure delivery of a scalable solution.</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="md:w-1/2">
-                            <p class="text-lg mb-4 text-gray-300">
-                                ServeNow è l'applicazione ufficiale che ho realizzato per l'organizzazione di volontariato Serve the City. Lo strumento digitale connette i volontari con progetti e persone in difficoltà, semplificando la gestione degli eventi e la comunicazione. Il mio obiettivo era creare una piattaforma tecnologica per massimizzare l'impatto sociale dell'organizzazione sul territorio.
+                    </div>
+
+                    <!-- Education -->
+                    <div data-aos="fade-left" data-aos-duration="1000">
+                        <h3 class="text-2xl font-bold mb-6 gradient-text" data-translate="experience-education-title">🎓 Education</h3>
+                        <div class="space-y-8">
+                            <div class="experience-item p-6 rounded-xl glass-effect text-left">
+                                <h4 class="text-xl font-semibold" data-translate="edu-highschool-title">High School Diploma (Developer and IT Track)</h4>
+                                <p class="text-sky-400" data-translate="edu-highschool-dates">Istituto Paritario Talete | 2017 - 2022</p>
+                                <ul class="list-disc list-inside text-gray-300 mt-2 space-y-1">
+                                    <li data-translate="edu-highschool-desc1">Focused on programming and digital technologies.</li>
+                                    <li data-translate="edu-highschool-desc2">Hands-on experience through software development projects during the academic years.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 md:py-32 bg-gray-900/50">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4" data-aos="fade-up" data-translate="projects-title">My Projects</h2>
+                <div class="w-24 h-1 bg-sky-500 mx-auto mb-12" data-aos="fade-up" data-aos-delay="100"></div>
+
+                <!-- Featured Project: ServeNow -->
+                <div class="mb-20 p-8 rounded-2xl glass-effect border-sky-500/50 border-2" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-2xl font-bold mb-2 text-center md:text-left gradient-text" data-translate="projects-featured-title">FEATURED: ServeNow</h3>
+                    <div class="flex flex-col md:flex-row gap-8 items-center">
+                        <div class="md:w-1/2" data-aos="fade-right" data-aos-duration="1000">
+                            <img src="https://i.ytimg.com/vi/W8MTQCQTr-o/maxresdefault.jpg" alt="ServeNow App Mockup" class="rounded-lg shadow-2xl w-full">
+                        </div>
+                        <div class="md:w-1/2" data-aos="fade-left" data-aos-duration="1000">
+                            <p class="text-lg mb-4 text-gray-300" data-translate="projects-featured-desc1">
+                                ServeNow is the official application I developed for the Serve the City volunteer organization. This digital tool connects volunteers with projects and people in need, simplifying event management and communication. My goal was to create a technological platform to maximize the organization's social impact in the community.
                             </p>
-                            <p class="text-gray-300 mb-6">
-                                Sviluppata interamente con <strong>React Native</strong>, l'app offre un'esperienza utente fluida, notifiche push, geolocalizzazione.
+                            <p class="text-gray-300 mb-6" data-translate="projects-featured-desc2">
+                                Fully developed with <strong>React Native</strong>, the app offers a fluid user experience, push notifications, and geolocation.
                             </p>
                             <div class="flex flex-wrap gap-2">
                                 <span class="bg-sky-500/20 text-sky-300 text-sm font-medium px-3 py-1 rounded-full">React Native</span>
@@ -210,63 +403,63 @@
                     </div>
                 </div>
 
-                <!-- Altri Progetti -->
-                <h3 class="text-2xl font-bold text-center mb-12">Altri Lavori</h3>
+                <!-- Other Projects -->
+                <h3 class="text-2xl font-bold text-center mb-12" data-aos="fade-up" data-translate="projects-other-title">Other Works</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Progetto 1 -->
-                    <div class="p-6 rounded-xl glass-effect text-center transform hover:-translate-y-2 transition-transform duration-300">
-                        <img src="https://radiovisionair.net/wp-content/uploads/2025/07/logoradiovisionair.png" alt="Logo Radio Visionair" class="w-full h-24 object-contain rounded-md mb-4" onerror="this.onerror=null; this.src='https://placehold.co/500x300/1f2937/e5e7eb?text=Radio+Visionair';">
-                        <h4 class="text-xl font-bold mb-2">Radio Visionair</h4>
-                        <p class="text-gray-400 text-sm">App per ascoltare la radio dei tuoi sogni</p>
+                    <!-- Project 1 -->
+                    <div class="p-6 rounded-xl glass-effect text-center transform hover:-translate-y-2 transition-transform duration-300 project-card" data-aos="zoom-in" data-aos-delay="100">
+                        <img src="https://radiovisionair.net/wp-content/uploads/2025/07/logoradiovisionair.png" alt="Radio Visionair Logo" class="w-full h-24 object-contain rounded-md mb-4" onerror="this.onerror=null; this.src='https://placehold.co/500x300/1f2937/e5e7eb?text=Radio+Visionair';">
+                        <h4 class="text-xl font-bold mb-2" data-translate="proj-radio-visionair-title">Radio Visionair</h4>
+                        <p class="text-gray-400 text-sm" data-translate="proj-radio-visionair-desc">App to listen to the radio of your dreams.</p>
                     </div>
-                    <!-- Progetto 2 -->
-                    <div class="p-6 rounded-xl glass-effect text-center transform hover:-translate-y-2 transition-transform duration-300">
-                        <img src="images/offer.png" alt="Logo EveryOffer" class="w-full h-24 object-contain rounded-md mb-4" >
-                        <h4 class="text-xl font-bold mb-2">EveryOffer</h4>
-                        <p class="text-gray-400 text-sm">App per la ricerca di offerte e sconti.</p>
+                    <!-- Project 2 -->
+                    <div class="p-6 rounded-xl glass-effect text-center transform hover:-translate-y-2 transition-transform duration-300 project-card" data-aos="zoom-in" data-aos-delay="200">
+                        <img src="images/offer.png" alt="EveryOffer Logo" class="w-full h-24 object-contain rounded-md mb-4" >
+                        <h4 class="text-xl font-bold mb-2" data-translate="proj-everyoffer-title">EveryOffer</h4>
+                        <p class="text-gray-400 text-sm" data-translate="proj-everyoffer-desc">App for searching offers and discounts.</p>
                     </div>
-                    <!-- Progetto 3 -->
-                    <div class="p-6 rounded-xl glass-effect text-center transform hover:-translate-y-2 transition-transform duration-300">
-                        <img src="images/park.png" alt="Logo EveryPark" class="w-full h-24 object-contain rounded-md mb-4">
-                        <h4 class="text-xl font-bold mb-2">EveryPark</h4>
-                        <p class="text-gray-400 text-sm">Soluzione per la gestione dei parcheggi.</p>
+                    <!-- Project 3 -->
+                    <div class="p-6 rounded-xl glass-effect text-center transform hover:-translate-y-2 transition-transform duration-300 project-card" data-aos="zoom-in" data-aos-delay="300">
+                        <img src="images/park.png" alt="EveryPark Logo" class="w-full h-24 object-contain rounded-md mb-4">
+                        <h4 class="text-xl font-bold mb-2" data-translate="proj-everypark-title">EveryPark</h4>
+                        <p class="text-gray-400 text-sm" data-translate="proj-everypark-desc">Solution for parking management.</p>
                     </div>
-                    <!-- Progetto 4 -->
-                    <div class="p-6 rounded-xl glass-effect text-center transform hover:-translate-y-2 transition-transform duration-300">
-                        <img src="https://museoteti.it/wp-content/uploads/2024/07/logo-museo.png" alt="Logo Museo Di Teti" class="w-full h-24 object-contain rounded-md mb-4" onerror="this.onerror=null; this.src='https://placehold.co/500x300/1f2937/e5e7eb?text=Museo+Di+Teti';">
-                        <h4 class="text-xl font-bold mb-2">Museo Di Teti</h4>
-                        <p class="text-gray-400 text-sm">Guida interattiva per il museo.</p>
+                    <!-- Project 4 -->
+                    <div class="p-6 rounded-xl glass-effect text-center transform hover:-translate-y-2 transition-transform duration-300 project-card" data-aos="zoom-in" data-aos-delay="400">
+                        <img src="https://museoteti.it/wp-content/uploads/2024/07/logo-museo.png" alt="Museo Di Teti Logo" class="w-full h-24 object-contain rounded-md mb-4" onerror="this.onerror=null; this.src='https://placehold.co/500x300/1f2937/e5e7eb?text=Museo+Di+Teti';">
+                        <h4 class="text-xl font-bold mb-2" data-translate="proj-museo-teti-title">Museo Di Teti</h4>
+                        <p class="text-gray-400 text-sm" data-translate="proj-museo-teti-desc">Interactive guide for the museum.</p>
                     </div>
-                    <!-- Progetto 5 -->
-                    <div class="p-6 rounded-xl glass-effect text-center transform hover:-translate-y-2 transition-transform duration-300">
-                        <img src="https://villapernisvacca.it/wp-content/uploads/2025/04/logo.png" alt="Logo Villa Pernis Vaca" class="w-full h-24 object-contain rounded-md mb-4" onerror="this.onerror=null; this.src='https://placehold.co/500x300/1f2937/e5e7eb?text=Villa+Pernis';">
-                        <h4 class="text-xl font-bold mb-2">Villa Pernis Vaca</h4>
-                        <p class="text-gray-400 text-sm">App per eventi e prenotazioni della villa.</p>
+                    <!-- Project 5 -->
+                    <div class="p-6 rounded-xl glass-effect text-center transform hover:-translate-y-2 transition-transform duration-300 project-card" data-aos="zoom-in" data-aos-delay="500">
+                        <img src="https://villapernisvacca.it/wp-content/uploads/2025/04/logo.png" alt="Villa Pernis Vaca Logo" class="w-full h-24 object-contain rounded-md mb-4" onerror="this.onerror=null; this.src='https://placehold.co/500x300/1f2937/e5e7eb?text=Villa+Pernis';">
+                        <h4 class="text-xl font-bold mb-2" data-translate="proj-villa-pernis-title">Villa Pernis Vaca</h4>
+                        <p class="text-gray-400 text-sm" data-translate="proj-villa-pernis-desc">App for villa events and bookings.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Sezione Contatti -->
-        <section id="contact" class="py-20 md:py-32 reveal">
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 md:py-32">
             <div class="container mx-auto px-6 text-center">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Mettiamoci in contatto</h2>
-                <div class="w-24 h-1 bg-sky-500 mx-auto mb-12"></div>
-                <p class="text-lg max-w-2xl mx-auto mb-8 text-gray-300">
-                    Sono sempre aperto a nuove opportunità e collaborazioni. Puoi trovarmi sui social o scrivermi una mail.
+                <h2 class="text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up" data-translate="contact-title">Get in Touch</h2>
+                <div class="w-24 h-1 bg-sky-500 mx-auto mb-12" data-aos="fade-up" data-aos-delay="100"></div>
+                <p class="text-lg max-w-2xl mx-auto mb-8 text-gray-300" data-aos="fade-up" data-aos-delay="200" data-translate="contact-description">
+                    I'm always open to new opportunities and collaborations. You can find me on social media or send me an email.
                 </p>
-                <div class="flex justify-center items-center space-x-6">
+                <div class="flex justify-center items-center space-x-6" data-aos="fade-up" data-aos-delay="300">
                     <!-- GitHub -->
                     <a href="https://github.com/imtzson" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors duration-300">
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
                     </a>
                     <!-- Instagram -->
                     <a href="https://instagram.com/nicolo_cauli" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors duration-300">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                           <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                     </a>
                     <!-- Email -->
-                     <a href="mailto:cauli.nicolo2003@gmail.com" class="text-gray-400 hover:text-white transition-colors duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    <a href="mailto:cauli.nicolo2003@gmail.com" class="text-gray-400 hover:text-white transition-colors duration-300">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                     </a>
                 </div>
             </div>
@@ -276,27 +469,309 @@
     <!-- Footer -->
     <footer class="bg-gray-900 border-t border-gray-800">
         <div class="container mx-auto px-6 py-6 text-center text-gray-500">
-            <p>&copy; 2024 Nicolò. Tutti i diritti riservati.</p>
+            <p data-translate="footer-text">&copy; 2024 Nicolò. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Script per le animazioni -->
+    <!-- AOS Animate On Scroll Library JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, { 
-                threshold: 0.1 
-            });
+        // Translations object
+        const translations = {
+            en: {
+                // Header
+                'title': 'Nicolò - Full Stack Developer',
+                'nav-about': 'About Me',
+                'nav-skills': 'Skills',
+                'nav-experience': 'Experience',
+                'nav-projects': 'Projects',
+                'nav-contact': 'Contact',
+                'hero-title': 'Nicolò',
+                'hero-subtitle-part1': 'Full Stack Developer',
+                'hero-subtitle-part2': 'of Mobile Apps',
+                'hero-description-part1': 'I transform ideas into high-performance and intuitive mobile applications with',
+                'hero-description-ionic': 'Ionic',
+                'hero-description-reactnative': 'React Native',
+                'hero-button': 'Discover My Work',
+                // About Section
+                'about-title': 'About Me',
+                'about-p1-part1': 'Hi! I\'m Nicolò Cauli, a 22-year-old developer with a strong passion for the world of mobile development. My goal is to create user experiences that are not only functional but also enjoyable and intuitive.',
+                'about-p2-part1': 'With solid experience in',
+                'about-p2-ionic': 'Ionic',
+                'about-p2-reactnative': 'React Native',
+                'about-p2-part2': 'I manage the entire application lifecycle: from interface design to backend logic, ensuring a complete and high-quality final product.',
+                // Skills Section
+                'skills-title': 'My Skills',
+                'skills-languages-title': '✍️ Languages',
+                'skills-tech-stack-title': '🛠 Tech Stack and Tools',
+                'skills-frontend-title': 'Front-End',
+                'skills-backend-title': 'Back-End',
+                'skills-devops-title': 'DevOps',
+                // Experience Section
+                'experience-title': 'Experience & Education',
+                'experience-work-title': '💼 Work Experience',
+                'exp-fs-mobile-title': 'Senior Full Stack Mobile Developer',
+                'exp-fs-mobile-dates': 'PrimaIdea | Mar 2025 - Present',
+                'exp-fs-mobile-desc1': 'Design and develop cross-platform mobile applications for iOS and Android using modern frameworks like Ionic and React Native.',
+                'exp-fs-mobile-desc2': 'Manage the entire app lifecycle — from planning and UI/UX design, to development, testing, deployment, and maintenance.',
+                'exp-fs-mobile-desc3': 'Build robust, scalable back-end services and APIs with Node.js and integrate with cloud-based databases and third-party services.',
+                'exp-fs-mobile-desc4': 'Focus on delivering high-performance, visually appealing, and user-friendly experiences across devices.',
+                'exp-fs-mobile-desc5': 'Collaborate with clients to transform ideas into fully functional apps, providing technical guidance and product vision support.',
+                'exp-fe-title': 'Senior Front-end Developer',
+                'exp-fe-dates': 'NoviGroup | Apr 2024 - Oct 2024',
+                'exp-fe-desc1': 'Designed and developed responsive websites and cross-platform mobile applications for iOS and Android.',
+                'exp-fe-desc2': 'Focused on delivering intuitive and visually engaging user interfaces using modern front-end technologies.',
+                'exp-fe-desc3': 'Collaborated with designers and backend developers to ensure seamless integration and optimal performance.',
+                'exp-fe-desc4': 'Implemented best practices in UI/UX, accessibility, and performance optimization.',
+                'exp-serve-now-title': 'Senior Full Stack Developer',
+                'exp-serve-now-dates': 'Serve Now | Sep 2023 - Mar 2024',
+                'exp-serve-now-desc1': 'Led the development of a complete mobile application using Ionic React, managing both front-end and back-end components.',
+                'exp-serve-now-desc2': 'Designed and implemented a responsive and user-friendly interface with optimized performance across devices.',
+                'exp-serve-now-desc3': 'Developed secure APIs and integrated backend services to support core application functionality.',
+                'exp-serve-now-desc4': 'Collaborated with the client to define features, improve UX, and ensure delivery of a scalable solution.',
+                'experience-education-title': '🎓 Education',
+                'edu-highschool-title': 'High School Diploma (Developer and IT Track)',
+                'edu-highschool-dates': 'Istituto Paritario Talete | 2017 - 2022',
+                'edu-highschool-desc1': 'Focused on programming and digital technologies.',
+                'edu-highschool-desc2': 'Hands-on experience through software development projects during the academic years.',
+                // Projects Section
+                'projects-title': 'My Projects',
+                'projects-featured-title': 'FEATURED: ServeNow',
+                'projects-featured-desc1': 'ServeNow is the official application I developed for the Serve the City volunteer organization. This digital tool connects volunteers with projects and people in need, simplifying event management and communication. My goal was to create a technological platform to maximize the organization\'s social impact in the community.',
+                'projects-featured-desc2': 'Fully developed with <strong>React Native</strong>, the app offers a fluid user experience, push notifications, and geolocation.',
+                'projects-other-title': 'Other Works',
+                'proj-radio-visionair-title': 'Radio Visionair',
+                'proj-radio-visionair-desc': 'App to listen to the radio of your dreams.',
+                'proj-everyoffer-title': 'EveryOffer',
+                'proj-everyoffer-desc': 'App for searching offers and discounts.',
+                'proj-everypark-title': 'EveryPark',
+                'proj-everypark-desc': 'Solution for parking management.',
+                'proj-museo-teti-title': 'Museo Di Teti',
+                'proj-museo-teti-desc': 'Interactive guide for the museum.',
+                'proj-villa-pernis-title': 'Villa Pernis Vaca',
+                'proj-villa-pernis-desc': 'App for villa events and bookings.',
+                // Contact Section
+                'contact-title': 'Get in Touch',
+                'contact-description': 'I\'m always open to new opportunities and collaborations. You can find me on social media or send me an email.',
+                // Footer
+                'footer-text': '&copy; 2024 Nicolò. All rights reserved.'
+            },
+            it: {
+                // Header
+                'title': 'Nicolò - Sviluppatore Full Stack',
+                'nav-about': 'Chi Sono',
+                'nav-skills': 'Competenze',
+                'nav-experience': 'Esperienza',
+                'nav-projects': 'Progetti',
+                'nav-contact': 'Contatti',
+                'hero-title': 'Nicolò',
+                'hero-subtitle-part1': 'Sviluppatore Full Stack',
+                'hero-subtitle-part2': 'di App Mobile',
+                'hero-description-part1': 'Trasformo idee in applicazioni mobile performanti e intuitive con',
+                'hero-description-ionic': 'Ionic',
+                'hero-description-reactnative': 'React Native',
+                'hero-button': 'Scopri i miei lavori',
+                // About Section
+                'about-title': 'Chi Sono',
+                'about-p1-part1': 'Ciao! Sono Nicolò Cauli, uno sviluppatore di 22 anni con una forte passione per l\'universo dello sviluppo mobile. Il mio obiettivo è creare esperienze utente che non siano solo funzionali, ma anche piacevoli e intuitive.',
+                'about-p2-part1': 'Con una solida esperienza in',
+                'about-p2-ionic': 'Ionic',
+                'about-p2-reactnative': 'React Native',
+                'about-p2-part2': 'gestisco l\'intero ciclo di vita di un\'applicazione: dalla progettazione dell\'interfaccia alla logica del backend, garantendo un prodotto finale completo e di alta qualità.',
+                // Skills Section
+                'skills-title': 'Le mie Competenze',
+                'skills-languages-title': '✍️ Linguaggi',
+                'skills-tech-stack-title': '🛠 Tech Stack e Strumenti',
+                'skills-frontend-title': 'Front-End',
+                'skills-backend-title': 'Back-End',
+                'skills-devops-title': 'DevOps',
+                // Experience Section
+                'experience-title': 'Esperienza & Formazione',
+                'experience-work-title': '💼 Esperienza Lavorativa',
+                'exp-fs-mobile-title': 'Senior Full Stack Mobile Developer',
+                'exp-fs-mobile-dates': 'PrimaIdea | Mar 2025 - Presente',
+                'exp-fs-mobile-desc1': 'Progettazione e sviluppo di applicazioni mobile cross-platform per iOS e Android utilizzando framework moderni come Ionic e React Native.',
+                'exp-fs-mobile-desc2': 'Gestione dell\'intero ciclo di vita dell\'app — dalla pianificazione e design UI/UX, allo sviluppo, test, deployment e manutenzione.',
+                'exp-fs-mobile-desc3': 'Costruzione di servizi back-end e API robusti e scalabili con Node.js e integrazione con database basati su cloud e servizi di terze parti.',
+                'exp-fs-mobile-desc4': 'Focus sulla fornitura di esperienze ad alte prestazioni, visivamente accattivanti e facili da usare su tutti i dispositivi.',
+                'exp-fs-mobile-desc5': 'Collaborazione con i clienti per trasformare le idee in app completamente funzionali, fornendo guida tecnica e supporto alla visione del prodotto.',
+                'exp-fe-title': 'Senior Front-end Developer',
+                'exp-fe-dates': 'NoviGroup | Apr 2024 - Ott 2024',
+                'exp-fe-desc1': 'Progettazione e sviluppo di siti web responsive e applicazioni mobile cross-platform per iOS e Android.',
+                'exp-fe-desc2': 'Focus sulla fornitura di interfacce utente intuitive e visivamente accattivanti utilizzando moderne tecnologie front-end.',
+                'exp-fe-desc3': 'Collaborazione con designer e sviluppatori backend per garantire un\'integrazione senza soluzione di continuità e prestazioni ottimali.',
+                'exp-fe-desc4': 'Implementazione delle migliori pratiche in UI/UX, accessibilità e ottimizzazione delle prestazioni.',
+                'exp-serve-now-title': 'Senior Full Stack Developer',
+                'exp-serve-now-dates': 'Serve Now | Set 2023 - Mar 2024',
+                'exp-serve-now-desc1': 'Ha guidato lo sviluppo di un\'applicazione mobile completa utilizzando Ionic React, gestendo sia i componenti front-end che back-end.',
+                'exp-serve-now-desc2': 'Ha progettato e implementato un\'interfaccia reattiva e user-friendly con prestazioni ottimizzate su tutti i dispositivi.',
+                'exp-serve-now-desc3': 'Ha sviluppato API sicure e integrato servizi backend per supportare le funzionalità principali dell\'applicazione.',
+                'exp-serve-now-desc4': 'Ha collaborato con il cliente per definire le funzionalità, migliorare l\'UX e garantire la consegna di una soluzione scalabile.',
+                'experience-education-title': '🎓 Formazione',
+                'edu-highschool-title': 'Diploma di Scuola Superiore (Indirizzo Sviluppatore e IT)',
+                'edu-highschool-dates': 'Istituto Paritario Talete | 2017 - 2022',
+                'edu-highschool-desc1': 'Focalizzato sulla programmazione e le tecnologie digitali.',
+                'edu-highschool-desc2': 'Esperienza pratica attraverso progetti di sviluppo software durante gli anni accademici.',
+                // Projects Section
+                'projects-title': 'I Miei Progetti',
+                'projects-featured-title': 'IN EVIDENZA: ServeNow',
+                'projects-featured-desc1': 'ServeNow è l\'applicazione ufficiale che ho realizzato per l\'organizzazione di volontariato Serve the City. Lo strumento digitale connette i volontari con progetti e persone in difficoltà, semplificando la gestione degli eventi e la comunicazione. Il mio obiettivo era creare una piattaforma tecnologica per massimizzare l\'impatto sociale dell\'organizzazione sul territorio.',
+                'projects-featured-desc2': 'Sviluppata interamente con <strong>React Native</strong>, l\'app offre un\'esperienza utente fluida, notifiche push, geolocalizzazione.',
+                'projects-other-title': 'Altri Lavori',
+                'proj-radio-visionair-title': 'Radio Visionair',
+                'proj-radio-visionair-desc': 'App per ascoltare la radio dei tuoi sogni.',
+                'proj-everyoffer-title': 'EveryOffer',
+                'proj-everyoffer-desc': 'App per la ricerca di offerte e sconti.',
+                'proj-everypark-title': 'EveryPark',
+                'proj-everypark-desc': 'Soluzione per la gestione dei parcheggi.',
+                'proj-museo-teti-title': 'Museo Di Teti',
+                'proj-museo-teti-desc': 'Guida interattiva per il museo.',
+                'proj-villa-pernis-title': 'Villa Pernis Vaca',
+                'proj-villa-pernis-desc': 'App per eventi e prenotazioni della villa.',
+                // Contact Section
+                'contact-title': 'Mettiamoci in contatto',
+                'contact-description': 'Sono sempre aperto a nuove opportunità e collaborazioni. Puoi trovarmi sui social o scrivermi una mail.',
+                // Footer
+                'footer-text': '&copy; 2024 Nicolò. Tutti i diritti riservati.'
+            }
+        };
 
-            const elementsToReveal = document.querySelectorAll('.reveal');
-            elementsToReveal.forEach(el => {
-                observer.observe(el);
+        // Initialize AOS
+        AOS.init({
+            once: true, // Whether animation should happen only once - while scrolling down
+            mirror: false, // Whether elements should animate out while scrolling past them
+            duration: 800, // Values from 0 to 3000, with step 50ms
+            easing: 'ease-out-cubic', // Easing for AOS animations
+        });
+
+        // Theme Toggle Logic
+        const themeToggle = document.getElementById('theme-toggle');
+        const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+        const htmlElement = document.documentElement;
+        const sunIcon = document.getElementById('sun-icon');
+        const moonIcon = document.getElementById('moon-icon');
+        const mobileSunIcon = document.getElementById('mobile-sun-icon');
+        const mobileMoonIcon = document.getElementById('mobile-moon-icon');
+
+        // Function to set the theme
+        function setTheme(theme) {
+            if (theme === 'dark') {
+                htmlElement.classList.remove('light');
+                sunIcon.classList.add('hidden');
+                moonIcon.classList.remove('hidden');
+                mobileSunIcon.classList.add('hidden');
+                mobileMoonIcon.classList.remove('hidden');
+            } else {
+                htmlElement.classList.add('light');
+                sunIcon.classList.remove('hidden');
+                moonIcon.classList.add('hidden');
+                mobileSunIcon.classList.remove('hidden');
+                mobileMoonIcon.classList.add('hidden');
+            }
+            localStorage.setItem('theme', theme);
+        }
+
+        // Check for saved theme preference on load
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+            setTheme(savedTheme);
+        });
+
+        // Toggle theme on button click
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.classList.contains('light') ? 'light' : 'dark';
+            setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+        });
+
+        mobileThemeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.classList.contains('light') ? 'light' : 'dark';
+            setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+        });
+
+        // Mobile Menu Toggle Logic
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Language Toggle Logic
+        const languageToggle = document.getElementById('language-toggle');
+        const languageDropdown = document.getElementById('language-dropdown');
+        const currentLanguageText = document.getElementById('current-language-text');
+
+        const mobileLanguageToggle = document.getElementById('mobile-language-toggle');
+        const mobileLanguageDropdown = document.getElementById('mobile-language-dropdown');
+        const mobileCurrentLanguageText = document.getElementById('mobile-current-language-text');
+
+        // Function to update content based on selected language
+        function updateContent(lang) {
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    // Handle special cases for innerHTML (e.g., strong tags)
+                    if (key.includes('hero-description') || key.includes('about-p2') || key.includes('projects-featured-desc2') || key.includes('footer-text')) {
+                        element.innerHTML = translations[lang][key];
+                    } else {
+                        element.textContent = translations[lang][key];
+                    }
+                }
             });
+            // Update the HTML lang attribute
+            htmlElement.setAttribute('lang', lang);
+            // Update current language display
+            currentLanguageText.textContent = lang.toUpperCase();
+            mobileCurrentLanguageText.textContent = lang.toUpperCase();
+            // Store preference
+            localStorage.setItem('lang', lang);
+        }
+
+        // Toggle language dropdown visibility
+        languageToggle.addEventListener('click', (event) => {
+            event.stopPropagation(); // Prevent document click from closing immediately
+            languageDropdown.classList.toggle('hidden');
+        });
+
+        mobileLanguageToggle.addEventListener('click', (event) => {
+            event.stopPropagation(); // Prevent document click from closing immediately
+            mobileLanguageDropdown.classList.toggle('hidden');
+        });
+
+        // Handle language selection
+        languageDropdown.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+                const selectedLang = event.target.getAttribute('data-lang');
+                updateContent(selectedLang);
+                languageDropdown.classList.add('hidden'); // Hide dropdown after selection
+            });
+        });
+
+        mobileLanguageDropdown.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+                const selectedLang = event.target.getAttribute('data-lang');
+                updateContent(selectedLang);
+                mobileLanguageDropdown.classList.add('hidden'); // Hide dropdown after selection
+                mobileMenu.classList.add('hidden'); // Also close mobile menu
+            });
+        });
+
+        // Close dropdowns if clicked outside
+        document.addEventListener('click', (event) => {
+            if (!languageToggle.contains(event.target) && !languageDropdown.contains(event.target)) {
+                languageDropdown.classList.add('hidden');
+            }
+            if (!mobileLanguageToggle.contains(event.target) && !mobileLanguageDropdown.contains(event.target)) {
+                mobileLanguageDropdown.classList.add('hidden');
+            }
+        });
+
+        // Load saved language or default to English on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('lang') || 'en'; // Default to English
+            updateContent(savedLang);
         });
     </script>
 
