@@ -18,18 +18,11 @@
 
     <!-- Custom Styles -->
     <style>
-        /* Base styles for dark mode (default) */
+        /* Base styles for dark mode (default and fixed) */
         body {
             font-family: 'Inter', sans-serif;
             background-color: #111827; /* Dark gray for background */
             color: #E5E7EB; /* Light gray text */
-            transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for theme change */
-        }
-
-        /* Light mode styles */
-        html.light body {
-            background-color: #F9FAFB; /* Light background */
-            color: #1F2937; /* Dark text */
         }
         
         /* Glass effect for dark mode */
@@ -39,15 +32,7 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Glass effect for light mode */
-        html.light .glass-effect {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(209, 213, 219, 0.5); /* Lighter border */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-        }
-
-        /* Gradient text remains the same for both themes */
+        /* Gradient text remains the same */
         .gradient-text {
             background: linear-gradient(to right, #38bdf8, #818cf8);
             -webkit-background-clip: text;
@@ -63,65 +48,23 @@
 
         /* Overlay for hero section */
         #home .overlay {
-            background-color: rgba(0, 0, 0, 0.6); /* Dark overlay for dark mode */
-            transition: background-color 0.3s ease;
-        }
-
-        /* Light mode overlay for hero section */
-        html.light #home .overlay {
-            background-color: rgba(255, 255, 255, 0.7); /* Lighter overlay for light mode */
-        }
-
-        /* Adjust text color for hero section in light mode */
-        html.light #home h1,
-        html.light #home h2,
-        html.light #home p {
-            color: #1F2937; /* Darker text for readability */
+            background-color: rgba(0, 0, 0, 0.6); /* Dark overlay */
         }
         
         /* Background for skills section */
         #skills {
-            background-color: #1F2937; /* Darker background for skills in dark mode */
-            transition: background-color 0.3s ease;
-        }
-
-        html.light #skills {
-            background-color: #E5E7EB; /* Lighter background for skills in light mode */
+            background-color: #1F2937; /* Darker background for skills */
         }
 
         /* Footer background */
         footer {
-            background-color: #1F2937; /* Darker background for footer in dark mode */
-            transition: background-color 0.3s ease;
-        }
-
-        html.light footer {
-            background-color: #D1D5DB; /* Lighter background for footer in light mode */
-            color: #4B5563; /* Darker text for footer in light mode */
+            background-color: #1F2937; /* Darker background for footer */
         }
 
         /* Project card background */
         .project-card, .experience-item {
-            background-color: rgba(255, 255, 255, 0.05); /* Glass effect for dark mode */
+            background-color: rgba(255, 255, 255, 0.05); /* Glass effect */
             border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        html.light .project-card, html.light .experience-item {
-            background-color: rgba(255, 255, 255, 0.9); /* Lighter background for light mode */
-            border: 1px solid rgba(209, 213, 219, 0.5);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        }
-
-        /* Text colors for specific elements in light mode */
-        html.light .text-gray-300 {
-            color: #374151; /* Darker gray for light mode */
-        }
-        html.light .text-gray-400 {
-            color: #6B7280; /* Even darker gray for light mode */
-        }
-        html.light .border-gray-700 {
-            border-color: #D1D5DB; /* Lighter border for light mode */
         }
     </style>
 </head>
@@ -138,7 +81,7 @@
                 <a href="#projects" class="hover:text-sky-400 transition-colors duration-300" data-translate="nav-projects">Projects</a>
                 <a href="#contact" class="hover:text-sky-400 transition-colors duration-300" data-translate="nav-contact">Contact</a>
                 
-                <!-- Language Selector -->
+                <!-- Language Selector (Desktop) -->
                 <div class="relative inline-block text-left">
                     <button id="language-toggle" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-gray-800 text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-sky-500 transition-colors duration-300">
                         <span id="current-language-text">EN</span>
@@ -153,20 +96,10 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Theme Toggle Button -->
-                <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-sky-500 transition-colors duration-300">
-                    <svg id="sun-icon" class="w-6 h-6 text-yellow-400 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h1M3 12H2m15.325-4.243l.707-.707M3.934 3.934l.707.707m0 12.728l-.707.707m12.728 0l.707-.707M12 18a6 6 0 110-12 6 6 0 010 12z"></path>
-                    </svg>
-                    <svg id="moon-icon" class="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
-                    </svg>
-                </button>
             </nav>
             <div class="md:hidden">
-                <!-- Mobile menu (optional) - You can add a hamburger icon here -->
-                <button id="mobile-menu-button" class="text-white focus:outline-none">
+                <!-- Mobile menu button (Hamburger icon) -->
+                <button id="mobile-menu-button" class="text-white focus:outline-none p-2 rounded-md hover:bg-gray-700 transition-colors duration-300">
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                     </svg>
@@ -174,7 +107,14 @@
             </div>
         </div>
         <!-- Mobile Menu Overlay -->
-        <div id="mobile-menu" class="hidden md:hidden fixed inset-0 bg-gray-900/90 backdrop-blur-md z-40 flex flex-col items-center justify-center space-y-8 text-xl">
+        <div id="mobile-menu" class="hidden md:hidden fixed inset-0 bg-gray-900/95 backdrop-blur-md z-40 flex flex-col items-center justify-center space-y-8 text-xl">
+            <!-- Close button for mobile menu -->
+            <button class="absolute top-6 right-6 text-white p-2 rounded-md hover:bg-gray-700 transition-colors duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+
             <a href="#about" class="text-white hover:text-sky-400 transition-colors duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')" data-translate="nav-about">About Me</a>
             <a href="#skills" class="text-white hover:text-sky-400 transition-colors duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')" data-translate="nav-skills">Skills</a>
             <a href="#experience" class="text-white hover:text-sky-400 transition-colors duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')" data-translate="nav-experience">Experience</a>
@@ -182,34 +122,20 @@
             <a href="#contact" class="text-white hover:text-sky-400 transition-colors duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')" data-translate="nav-contact">Contact</a>
             
             <!-- Mobile Language Selector -->
-            <div class="relative inline-block text-left">
-                <button id="mobile-language-toggle" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-gray-800 text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-sky-500 transition-colors duration-300">
+            <div class="relative inline-block text-left w-48">
+                <button id="mobile-language-toggle" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-gray-800 text-base font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-sky-500 transition-colors duration-300">
                     <span id="mobile-current-language-text">EN</span>
                     <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                     </svg>
                 </button>
-                <div id="mobile-language-dropdown" class="origin-top-right absolute right-0 mt-2 w-24 rounded-md shadow-lg bg-gray-800 ring-1 ring-black ring-opacity-5 hidden z-50">
+                <div id="mobile-language-dropdown" class="origin-top-right absolute right-0 mt-2 w-full rounded-md shadow-lg bg-gray-800 ring-1 ring-black ring-opacity-5 hidden z-50">
                     <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="mobile-language-toggle">
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white" role="menuitem" data-lang="en">English</a>
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white" role="menuitem" data-lang="it">Italiano</a>
+                        <a href="#" class="block px-4 py-2 text-base text-gray-300 hover:bg-gray-700 hover:text-white" role="menuitem" data-lang="en">English</a>
+                        <a href="#" class="block px-4 py-2 text-base text-gray-300 hover:bg-gray-700 hover:text-white" role="menuitem" data-lang="it">Italiano</a>
                     </div>
                 </div>
             </div>
-
-            <button id="mobile-theme-toggle" class="p-2 rounded-full hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-sky-500 transition-colors duration-300">
-                <svg id="mobile-sun-icon" class="w-8 h-8 text-yellow-400 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h1M3 12H2m15.325-4.243l.707-.707M3.934 3.934l.707.707m0 12.728l-.707.707m12.728 0l.707-.707M12 18a6 6 0 110-12 6 6 0 010 12z"></path>
-                </svg>
-                <svg id="mobile-moon-icon" class="w-8 h-8 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
-                </svg>
-            </button>
-            <button class="absolute top-6 right-6 text-white" onclick="document.getElementById('mobile-menu').classList.add('hidden')">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-            </button>
         </div>
     </header>
 
@@ -644,50 +570,6 @@
             easing: 'ease-out-cubic', // Easing for AOS animations
         });
 
-        // Theme Toggle Logic
-        const themeToggle = document.getElementById('theme-toggle');
-        const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
-        const htmlElement = document.documentElement;
-        const sunIcon = document.getElementById('sun-icon');
-        const moonIcon = document.getElementById('moon-icon');
-        const mobileSunIcon = document.getElementById('mobile-sun-icon');
-        const mobileMoonIcon = document.getElementById('mobile-moon-icon');
-
-        // Function to set the theme
-        function setTheme(theme) {
-            if (theme === 'dark') {
-                htmlElement.classList.remove('light');
-                sunIcon.classList.add('hidden');
-                moonIcon.classList.remove('hidden');
-                mobileSunIcon.classList.add('hidden');
-                mobileMoonIcon.classList.remove('hidden');
-            } else {
-                htmlElement.classList.add('light');
-                sunIcon.classList.remove('hidden');
-                moonIcon.classList.add('hidden');
-                mobileSunIcon.classList.remove('hidden');
-                mobileMoonIcon.classList.add('hidden');
-            }
-            localStorage.setItem('theme', theme);
-        }
-
-        // Check for saved theme preference on load
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-            setTheme(savedTheme);
-        });
-
-        // Toggle theme on button click
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = htmlElement.classList.contains('light') ? 'light' : 'dark';
-            setTheme(currentTheme === 'dark' ? 'light' : 'dark');
-        });
-
-        mobileThemeToggle.addEventListener('click', () => {
-            const currentTheme = htmlElement.classList.contains('light') ? 'light' : 'dark';
-            setTheme(currentTheme === 'dark' ? 'light' : 'dark');
-        });
-
         // Mobile Menu Toggle Logic
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -709,17 +591,18 @@
         function updateContent(lang) {
             document.querySelectorAll('[data-translate]').forEach(element => {
                 const key = element.getAttribute('data-translate');
-                if (translations[lang] && translations[lang][key]) {
+                const translation = translations[lang] && translations[lang][key];
+                if (translation !== undefined) {
                     // Handle special cases for innerHTML (e.g., strong tags)
                     if (key.includes('hero-description') || key.includes('about-p2') || key.includes('projects-featured-desc2') || key.includes('footer-text')) {
-                        element.innerHTML = translations[lang][key];
+                        element.innerHTML = translation;
                     } else {
-                        element.textContent = translations[lang][key];
+                        element.textContent = translation;
                     }
                 }
             });
             // Update the HTML lang attribute
-            htmlElement.setAttribute('lang', lang);
+            document.documentElement.setAttribute('lang', lang);
             // Update current language display
             currentLanguageText.textContent = lang.toUpperCase();
             mobileCurrentLanguageText.textContent = lang.toUpperCase();
