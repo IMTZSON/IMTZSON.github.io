@@ -66,6 +66,16 @@
             background-color: rgba(255, 255, 255, 0.05); /* Glass effect */
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
+
+        /* Mobile menu specific styles */
+        #mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-out;
+        }
+
+        #mobile-menu.active {
+            transform: translateX(0);
+        }
     </style>
 </head>
 <body class="antialiased overflow-x-hidden">
@@ -79,6 +89,7 @@
                 <a href="#skills" class="hover:text-sky-400 transition-colors duration-300" data-translate="nav-skills">Skills</a>
                 <a href="#experience" class="hover:text-sky-400 transition-colors duration-300" data-translate="nav-experience">Experience</a>
                 <a href="#projects" class="hover:text-sky-400 transition-colors duration-300" data-translate="nav-projects">Projects</a>
+                <a href="#gallery" class="hover:text-sky-400 transition-colors duration-300" data-translate="nav-gallery">Gallery</a>
                 <a href="#contact" class="hover:text-sky-400 transition-colors duration-300" data-translate="nav-contact">Contact</a>
                 
                 <!-- Language Selector (Desktop) -->
@@ -107,34 +118,25 @@
             </div>
         </div>
         <!-- Mobile Menu Overlay -->
-        <div id="mobile-menu" class="hidden md:hidden fixed inset-0 bg-gray-900/95 backdrop-blur-md z-40 flex flex-col items-center justify-center space-y-8 text-xl">
+        <div id="mobile-menu" class="fixed inset-y-0 right-0 w-64 bg-gray-900/95 backdrop-blur-md z-40 flex flex-col items-center py-8 space-y-8 text-xl hidden">
             <!-- Close button for mobile menu -->
-            <button class="absolute top-6 right-6 text-white p-2 rounded-md hover:bg-gray-700 transition-colors duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')">
+            <button class="absolute top-4 right-4 text-white p-2 rounded-md hover:bg-gray-700 transition-colors duration-300" id="mobile-menu-close-button">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
             </button>
 
-            <a href="#about" class="text-white hover:text-sky-400 transition-colors duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')" data-translate="nav-about">About Me</a>
-            <a href="#skills" class="text-white hover:text-sky-400 transition-colors duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')" data-translate="nav-skills">Skills</a>
-            <a href="#experience" class="text-white hover:text-sky-400 transition-colors duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')" data-translate="nav-experience">Experience</a>
-            <a href="#projects" class="text-white hover:text-sky-400 transition-colors duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')" data-translate="nav-projects">Projects</a>
-            <a href="#contact" class="text-white hover:text-sky-400 transition-colors duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')" data-translate="nav-contact">Contact</a>
+            <a href="#about" class="text-white hover:text-sky-400 transition-colors duration-300 mobile-nav-link" data-translate="nav-about">About Me</a>
+            <a href="#skills" class="text-white hover:text-sky-400 transition-colors duration-300 mobile-nav-link" data-translate="nav-skills">Skills</a>
+            <a href="#experience" class="text-white hover:text-sky-400 transition-colors duration-300 mobile-nav-link" data-translate="nav-experience">Experience</a>
+            <a href="#projects" class="text-white hover:text-sky-400 transition-colors duration-300 mobile-nav-link" data-translate="nav-projects">Projects</a>
+            <a href="#gallery" class="text-white hover:text-sky-400 transition-colors duration-300 mobile-nav-link" data-translate="nav-gallery">Gallery</a>
+            <a href="#contact" class="text-white hover:text-sky-400 transition-colors duration-300 mobile-nav-link" data-translate="nav-contact">Contact</a>
             
-            <!-- Mobile Language Selector -->
-            <div class="relative inline-block text-left w-48">
-                <button id="mobile-language-toggle" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-gray-800 text-base font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-sky-500 transition-colors duration-300">
-                    <span id="mobile-current-language-text">EN</span>
-                    <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                    </svg>
-                </button>
-                <div id="mobile-language-dropdown" class="origin-top-right absolute right-0 mt-2 w-full rounded-md shadow-lg bg-gray-800 ring-1 ring-black ring-opacity-5 hidden z-50">
-                    <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="mobile-language-toggle">
-                        <a href="#" class="block px-4 py-2 text-base text-gray-300 hover:bg-gray-700 hover:text-white" role="menuitem" data-lang="en">English</a>
-                        <a href="#" class="block px-4 py-2 text-base text-gray-300 hover:bg-gray-700 hover:text-white" role="menuitem" data-lang="it">Italiano</a>
-                    </div>
-                </div>
+            <!-- Mobile Language Selector - now direct buttons -->
+            <div class="flex space-x-4 mt-8">
+                <button class="bg-gray-800 text-white text-base font-medium px-4 py-2 rounded-md hover:bg-gray-700 transition-colors duration-300" data-lang="en">English</button>
+                <button class="bg-gray-800 text-white text-base font-medium px-4 py-2 rounded-md hover:bg-gray-700 transition-colors duration-300" data-lang="it">Italiano</button>
             </div>
         </div>
     </header>
@@ -179,9 +181,23 @@
                 </div>
             </div>
         </section>
-
+        <!-- Gallery Section -->
+        <section id="gallery" class="py-20 md:py-32 bg-gray-900/50">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up" data-translate="gallery-title">My Gallery</h2>
+                <div class="w-24 h-1 bg-sky-500 mx-auto mb-12" data-aos="fade-up" data-aos-delay="100"></div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <div class="p-4 rounded-xl glass-effect overflow-hidden" data-aos="fade-right" data-aos-duration="1000">
+                        <img src="images/tab1.png" alt="Banner Image 1" class="w-full h-auto rounded-lg object-cover">
+                    </div>
+                    <div class="p-4 rounded-xl glass-effect overflow-hidden" data-aos="fade-left" data-aos-duration="1000">
+                        <img src="images/tab2.png" alt="Banner Image 2" class="w-full h-auto rounded-lg object-cover">
+                    </div>
+                </div>
+            </div>
+        </section>
         <!-- Skills Section -->
-        <section id="skills" class="py-20 md:py-32 bg-gray-900/50">
+        <section id="skills" class="py-20 md:py-32">
             <div class="container mx-auto px-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-4" data-aos="fade-up" data-translate="skills-title">My Skills</h2>
                 <div class="w-24 h-1 bg-sky-500 mx-auto mb-12" data-aos="fade-up" data-aos-delay="100"></div>
@@ -236,7 +252,7 @@
         </section>
 
         <!-- Experience Section -->
-        <section id="experience" class="py-20 md:py-32">
+        <section id="experience" class="py-20 md:py-32 bg-gray-900/50">
             <div class="container mx-auto px-6 text-center">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up" data-translate="experience-title">Experience & Education</h2>
                 <div class="w-24 h-1 bg-sky-500 mx-auto mb-12" data-aos="fade-up" data-aos-delay="100"></div>
@@ -301,7 +317,7 @@
         </section>
 
         <!-- Projects Section -->
-        <section id="projects" class="py-20 md:py-32 bg-gray-900/50">
+        <section id="projects" class="py-20 md:py-32">
             <div class="container mx-auto px-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-4" data-aos="fade-up" data-translate="projects-title">My Projects</h2>
                 <div class="w-24 h-1 bg-sky-500 mx-auto mb-12" data-aos="fade-up" data-aos-delay="100"></div>
@@ -411,6 +427,7 @@
                 'nav-skills': 'Skills',
                 'nav-experience': 'Experience',
                 'nav-projects': 'Projects',
+                'nav-gallery': 'Gallery', // Added
                 'nav-contact': 'Contact',
                 'hero-title': 'Nicolò',
                 'hero-subtitle-part1': 'Full Stack Developer',
@@ -476,6 +493,8 @@
                 'proj-museo-teti-desc': 'Interactive guide for the museum.',
                 'proj-villa-pernis-title': 'Villa Pernis Vaca',
                 'proj-villa-pernis-desc': 'App for villa events and bookings.',
+                // Gallery Section (New)
+                'gallery-title': 'My Gallery', // Added
                 // Contact Section
                 'contact-title': 'Get in Touch',
                 'contact-description': 'I\'m always open to new opportunities and collaborations. You can find me on social media or send me an email.',
@@ -489,6 +508,7 @@
                 'nav-skills': 'Competenze',
                 'nav-experience': 'Esperienza',
                 'nav-projects': 'Progetti',
+                'nav-gallery': 'Galleria', // Added
                 'nav-contact': 'Contatti',
                 'hero-title': 'Nicolò',
                 'hero-subtitle-part1': 'Sviluppatore Full Stack',
@@ -554,6 +574,8 @@
                 'proj-museo-teti-desc': 'Guida interattiva per il museo.',
                 'proj-villa-pernis-title': 'Villa Pernis Vaca',
                 'proj-villa-pernis-desc': 'App per eventi e prenotazioni della villa.',
+                // Gallery Section (New)
+                'gallery-title': 'La Mia Galleria', // Added
                 // Contact Section
                 'contact-title': 'Mettiamoci in contatto',
                 'contact-description': 'Sono sempre aperto a nuove opportunità e collaborazioni. Puoi trovarmi sui social o scrivermi una mail.',
@@ -573,19 +595,40 @@
         // Mobile Menu Toggle Logic
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuCloseButton = document.getElementById('mobile-menu-close-button'); // Get the new close button
 
         mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.add('active'); // Add 'active' class to show menu
+            mobileMenu.classList.remove('hidden'); // Ensure it's visible
         });
 
-        // Language Toggle Logic
+        mobileMenuCloseButton.addEventListener('click', () => {
+            mobileMenu.classList.remove('active'); // Remove 'active' class to hide menu
+            mobileMenu.classList.add('hidden'); // Ensure it's hidden
+        });
+
+        // Close mobile menu when a navigation link is clicked
+        document.querySelectorAll('#mobile-menu .mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Language Toggle Logic (Desktop)
         const languageToggle = document.getElementById('language-toggle');
         const languageDropdown = document.getElementById('language-dropdown');
         const currentLanguageText = document.getElementById('current-language-text');
 
-        const mobileLanguageToggle = document.getElementById('mobile-language-toggle');
-        const mobileLanguageDropdown = document.getElementById('mobile-language-dropdown');
-        const mobileCurrentLanguageText = document.getElementById('mobile-current-language-text');
+        // Language Toggle Logic (Mobile - now direct buttons)
+        document.querySelectorAll('#mobile-menu button[data-lang]').forEach(button => {
+            button.addEventListener('click', (event) => {
+                const selectedLang = event.target.getAttribute('data-lang');
+                updateContent(selectedLang);
+                mobileMenu.classList.remove('active'); // Close mobile menu after language selection
+                mobileMenu.classList.add('hidden');
+            });
+        });
 
         // Function to update content based on selected language
         function updateContent(lang) {
@@ -603,51 +646,24 @@
             });
             // Update the HTML lang attribute
             document.documentElement.setAttribute('lang', lang);
-            // Update current language display
+            // Update current language display for desktop
             currentLanguageText.textContent = lang.toUpperCase();
-            mobileCurrentLanguageText.textContent = lang.toUpperCase();
+            // Update current language display for mobile (not directly needed for buttons, but good for consistency if a display was there)
+            // mobileCurrentLanguageText.textContent = lang.toUpperCase(); // This element is removed from mobile, so this line is commented out
             // Store preference
             localStorage.setItem('lang', lang);
         }
 
-        // Toggle language dropdown visibility
+        // Toggle desktop language dropdown visibility
         languageToggle.addEventListener('click', (event) => {
             event.stopPropagation(); // Prevent document click from closing immediately
             languageDropdown.classList.toggle('hidden');
         });
 
-        mobileLanguageToggle.addEventListener('click', (event) => {
-            event.stopPropagation(); // Prevent document click from closing immediately
-            mobileLanguageDropdown.classList.toggle('hidden');
-        });
-
-        // Handle language selection
-        languageDropdown.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', (event) => {
-                event.preventDefault();
-                const selectedLang = event.target.getAttribute('data-lang');
-                updateContent(selectedLang);
-                languageDropdown.classList.add('hidden'); // Hide dropdown after selection
-            });
-        });
-
-        mobileLanguageDropdown.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', (event) => {
-                event.preventDefault();
-                const selectedLang = event.target.getAttribute('data-lang');
-                updateContent(selectedLang);
-                mobileLanguageDropdown.classList.add('hidden'); // Hide dropdown after selection
-                mobileMenu.classList.add('hidden'); // Also close mobile menu
-            });
-        });
-
-        // Close dropdowns if clicked outside
+        // Close desktop dropdown if clicked outside
         document.addEventListener('click', (event) => {
             if (!languageToggle.contains(event.target) && !languageDropdown.contains(event.target)) {
                 languageDropdown.classList.add('hidden');
-            }
-            if (!mobileLanguageToggle.contains(event.target) && !mobileLanguageDropdown.contains(event.target)) {
-                mobileLanguageDropdown.classList.add('hidden');
             }
         });
 
