@@ -480,6 +480,16 @@
         .proj-card h4 { color: #fff; font-size: 1.1rem; font-weight: 800; }
         .proj-card p { color: var(--text-dim); font-size: 0.9rem; line-height: 1.65; margin-top: 8px; flex: 1; }
         .proj-card .feat-tags { margin-top: 16px; }
+        .repo-section-title { color: #fff; font-size: 1.35rem; font-weight: 800; margin-top: 70px; letter-spacing: -0.01em; }
+        .repo-grid { margin-top: 24px; }
+        a.repo-card { text-decoration: none; color: inherit; }
+        a.repo-card:hover { border-color: rgba(56,189,248,0.45); }
+        .repo-head { display: flex; align-items: center; gap: 8px; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; margin-bottom: 14px; flex-wrap: nowrap; }
+        .repo-head svg { flex: none; }
+        .repo-head span:first-of-type { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .repo-lang { flex: none; display: inline-flex; align-items: center; gap: 6px; }
+        .repo-lang i { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+        .repo-link { margin-top: 16px; color: var(--accent-1); font-weight: 700; font-size: 0.9rem; }
         .proj-card.gh-card { align-items: flex-start; justify-content: center; border-style: dashed; }
         .proj-card.gh-card a { color: var(--accent-1); text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; }
 
@@ -971,7 +981,46 @@
                         <p data-translate="p5-desc">Events and bookings platform for the villa.</p>
                         <div class="feat-tags"><span class="tag tag-indigo">Web</span><span class="tag tag-sky">Booking</span></div>
                     </div>
-                    <div class="card proj-card gh-card reveal">
+                </div>
+
+                <h3 class="repo-section-title reveal" data-translate="gh-sec-title">Open source on GitHub</h3>
+                <div class="projects-grid repo-grid">
+                    <a class="card proj-card repo-card reveal" href="https://github.com/IMTZSON/Kipo" target="_blank" rel="noopener noreferrer">
+                        <div class="repo-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-1.97c-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.7 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 015.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.78 1.05.78 2.12v3.14c0 .31.21.68.8.56A10.52 10.52 0 0023.5 12C23.5 5.65 18.35.5 12 .5z"/></svg><span>IMTZSON/Kipo</span><span class="repo-lang"><i style="background:#3178c6"></i>TypeScript</span></div>
+                        <h4>Kipo</h4>
+                        <p data-translate="gh1-desc">React Native (Expo) app that keeps track of items and money you lend: photos, phone contacts, return reminders and an archive.</p>
+                        <div class="feat-tags"><span class="tag tag-sky">React Native</span><span class="tag tag-indigo">Expo</span></div>
+                        <span class="repo-link" data-translate="gh-view">View code →</span>
+                    </a>
+                    <a class="card proj-card repo-card reveal" data-delay="1" href="https://github.com/IMTZSON/CMR" target="_blank" rel="noopener noreferrer">
+                        <div class="repo-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-1.97c-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.7 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 015.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.78 1.05.78 2.12v3.14c0 .31.21.68.8.56A10.52 10.52 0 0023.5 12C23.5 5.65 18.35.5 12 .5z"/></svg><span>IMTZSON/CMR</span><span class="repo-lang"><i style="background:#dd0031"></i>Angular</span></div>
+                        <h4>CMR NVGroup</h4>
+                        <p data-translate="gh2-desc">Business management web app for NVGroup: clients, employees, jobs, quotes and a dashboard with charts, behind a protected login.</p>
+                        <div class="feat-tags"><span class="tag tag-indigo">Angular 17</span><span class="tag tag-purple">Chart.js</span></div>
+                        <span class="repo-link" data-translate="gh-view">View code →</span>
+                    </a>
+                    <a class="card proj-card repo-card reveal" data-delay="2" href="https://github.com/IMTZSON/KitPvPFishing" target="_blank" rel="noopener noreferrer">
+                        <div class="repo-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-1.97c-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.7 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 015.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.78 1.05.78 2.12v3.14c0 .31.21.68.8.56A10.52 10.52 0 0023.5 12C23.5 5.65 18.35.5 12 .5z"/></svg><span>IMTZSON/KitPvPFishing</span><span class="repo-lang"><i style="background:#b07219"></i>Java</span></div>
+                        <h4>KitPvPFishing</h4>
+                        <p data-translate="gh3-desc">Fishing plugin for Minecraft KitPvP servers (Spigot 1.8.8): each catch gives one configurable reward — fish, enchanted diamond armor or console commands.</p>
+                        <div class="feat-tags"><span class="tag tag-green">Spigot</span><span class="tag tag-sky">Maven</span></div>
+                        <span class="repo-link" data-translate="gh-view">View code →</span>
+                    </a>
+                    <a class="card proj-card repo-card reveal" href="https://github.com/IMTZSON/WebSite-API" target="_blank" rel="noopener noreferrer">
+                        <div class="repo-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-1.97c-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.7 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 015.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.78 1.05.78 2.12v3.14c0 .31.21.68.8.56A10.52 10.52 0 0023.5 12C23.5 5.65 18.35.5 12 .5z"/></svg><span>IMTZSON/WebSite-API</span><span class="repo-lang"><i style="background:#512bd4"></i>.NET 8</span></div>
+                        <h4>Secure Web API</h4>
+                        <p data-translate="gh4-desc">.NET 8 Web API template with JWT and API-key authentication, BCrypt password hashing and Swagger documentation.</p>
+                        <div class="feat-tags"><span class="tag tag-purple">C#</span><span class="tag tag-indigo">JWT</span></div>
+                        <span class="repo-link" data-translate="gh-view">View code →</span>
+                    </a>
+                    <a class="card proj-card repo-card reveal" data-delay="1" href="https://github.com/IMTZSON/Test_CauliNicolo" target="_blank" rel="noopener noreferrer">
+                        <div class="repo-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-1.97c-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.7 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 015.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.78 1.05.78 2.12v3.14c0 .31.21.68.8.56A10.52 10.52 0 0023.5 12C23.5 5.65 18.35.5 12 .5z"/></svg><span>IMTZSON/Test_CauliNicolo</span><span class="repo-lang"><i style="background:#f1e05a"></i>JavaScript</span></div>
+                        <h4>IoT Sensor Map</h4>
+                        <p data-translate="gh5-desc">Interactive map of ARPAT environmental sensors in Florence, built on the Snap4City IoT API with Leaflet, favourites saved locally.</p>
+                        <div class="feat-tags"><span class="tag tag-green">Leaflet</span><span class="tag tag-sky">IoT API</span></div>
+                        <span class="repo-link" data-translate="gh-view">View code →</span>
+                    </a>
+                    <div class="card proj-card gh-card reveal" data-delay="2">
                         <h4 data-translate="p6-title">And much more…</h4>
                         <p data-translate="p6-desc">Open-source scripts, game modding, APIs and experiments live on my GitHub.</p>
                         <a href="https://github.com/imtzson" target="_blank" rel="noopener noreferrer">
@@ -1106,6 +1155,12 @@
                 'p2-desc': 'Geo-located loyalty platform to discover the best offers and discounts around you.',
                 'p3-desc': 'Smart parking assistant that simplifies finding and managing parking spots.',
                 'p5-desc': 'Events and bookings platform for the villa.',
+                'gh1-desc': 'React Native (Expo) app that keeps track of items and money you lend: photos, phone contacts, return reminders and an archive.',
+                'gh2-desc': 'Business management web app for NVGroup: clients, employees, jobs, quotes and a dashboard with charts, behind a protected login.',
+                'gh3-desc': 'Fishing plugin for Minecraft KitPvP servers (Spigot 1.8.8): each catch gives one configurable reward — fish, enchanted diamond armor or console commands.',
+                'gh4-desc': '.NET 8 Web API template with JWT and API-key authentication, BCrypt password hashing and Swagger documentation.',
+                'gh5-desc': 'Interactive map of ARPAT environmental sensors in Florence, built on the Snap4City IoT API with Leaflet, favourites saved locally.',
+                'gh-sec-title': 'Open source on GitHub', 'gh-view': 'View code →',
                 'p6-title': 'And much more…',
                 'p6-desc': 'Open-source scripts, game modding, APIs and experiments live on my GitHub.',
                 'gal-kicker': '// showcase', 'gal-title': 'Gallery',
@@ -1183,6 +1238,12 @@
                 'p2-desc': 'Piattaforma loyalty geolocalizzata per scoprire le migliori offerte e sconti intorno a te.',
                 'p3-desc': 'Smart parking assistant che semplifica la ricerca e la gestione dei parcheggi.',
                 'p5-desc': 'Piattaforma di eventi e prenotazioni per la villa.',
+                'gh1-desc': 'App React Native (Expo) per ricordare oggetti e soldi prestati: foto, contatti della rubrica, promemoria di restituzione e archivio.',
+                'gh2-desc': 'Gestionale web per NVGroup: clienti, dipendenti, lavorazioni, offerte e dashboard con grafici, dietro un login protetto.',
+                'gh3-desc': 'Plugin di pesca per server Minecraft KitPvP (Spigot 1.8.8): ogni cattura dà una sola ricompensa configurabile — pesce, armatura di diamante incantata o comandi da console.',
+                'gh4-desc': 'Template di Web API in .NET 8 con autenticazione JWT e API key, password cifrate con BCrypt e documentazione Swagger.',
+                'gh5-desc': 'Mappa interattiva dei sensori ambientali ARPAT di Firenze, basata sulle API IoT di Snap4City con Leaflet e preferiti salvati in locale.',
+                'gh-sec-title': 'Open source su GitHub', 'gh-view': 'Vedi il codice →',
                 'p6-title': 'E molto altro…',
                 'p6-desc': 'Script open-source, game modding, API ed esperimenti sul mio GitHub.',
                 'gal-kicker': '// showcase', 'gal-title': 'Galleria',
